@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import model.Boi;
+import model.Animal;
 
 public class App {
 
@@ -16,7 +16,7 @@ public class App {
 	public static String dataUltimaVacina;
 	public static float peso;
 	private static int resposta;
-	public static List<Boi> listaDeBois = new ArrayList<Boi>();
+	public static List<Animal> listaDeAnimais = new ArrayList<>();
 
 	public static void main(String[] args) throws InterruptedException, IOException {
 		do {
@@ -24,16 +24,16 @@ public class App {
 			montaMenu();
 			resposta = ler.nextInt();
 			if (resposta == 1) {
-				mostraBoi();
+				mostraAnimal();
 			}
 			if (resposta == 2) {
-				criaBoi();
+				criaAnimal();
 			}
 			if (resposta == 3) {
-				editaBoi();
+				editaAnimal();
 			}
 			if (resposta == 4) {
-				excluiBoi();
+				excluiAnimal();
 			}
 		} while (resposta != 5);
 
@@ -51,10 +51,10 @@ public class App {
 		resposta = 0;
 	}
 
-	private static void mostraBoi() {
+	private static void mostraAnimal() {
 		do {
 			clearScreen();
-			if (listaDeBois.size() > 0) {
+			if (listaDeAnimais.size() > 0) {
 				criaTabela();
 				System.out.println("Deseja retornar ao menu? (1 - SIM / 2 - NAO)");
 				System.out.print("Resposta: ");
@@ -66,41 +66,41 @@ public class App {
 		resposta = 0;
 	}
 
-	private static void criaBoi() {
+	private static void criaAnimal() {
 		do {
 			clearScreen();
-			System.out.println("1 - Digite o nome do boi");
+			System.out.println("1 - Digite o nome do animal");
 			System.out.print("Resposta: ");
 			nome = ler.next();
-			System.out.println("2 - digite a idade do boi");
+			System.out.println("2 - digite a idade do animal");
 			System.out.print("Resposta: ");
 			idade = ler.nextInt();
-			System.out.println("3 - Digite qual foi a última vacina que o boi tomou");
+			System.out.println("3 - Digite qual foi a ï¿½ltima vacina que o animal tomou");
 			System.out.print("Resposta: ");
 			nomeUltimaVacina = ler.next();
-			System.out.println("4 - Digite a data da última vacina que o boi tomou");
+			System.out.println("4 - Digite a data da ï¿½ltima vacina que o animal tomou");
 			System.out.print("Resposta: ");
 			dataUltimaVacina = ler.next();
-			System.out.println("5 - Digite o peso do boi");
+			System.out.println("5 - Digite o peso do animal");
 			System.out.print("Resposta: ");
 			peso = ler.nextFloat();
-			Boi boi = new Boi(listaDeBois.size(), nome, idade, nomeUltimaVacina, dataUltimaVacina, peso);
-			listaDeBois.add(boi);
-			System.out.println("6 - Deseja cadastrar outro boi? (1 - SIM / 2 - NAO)");
+			Animal boi = new Animal(listaDeAnimais.size(), nome, idade, nomeUltimaVacina, dataUltimaVacina, peso);
+			listaDeAnimais.add(boi);
+			System.out.println("6 - Deseja cadastrar outro animal? (1 - SIM / 2 - NAO)");
 			System.out.print("Resposta: ");
 			resposta = ler.nextInt();
 		} while (resposta != 2);
 		resposta = 0;
 	}
 
-	private static void editaBoi() {
+	private static void editaAnimal() {
 		do {
 			clearScreen();
-			if(listaDeBois.size() > 0) {
+			if (listaDeAnimais.size() > 0) {
 				criaTabela();
-				System.out.println("Informe o ID do boi a ser alterado: ");
+				System.out.println("Informe o ID do animal a ser alterado: ");
 				resposta = ler.nextInt();
-				alteraBoi(listaDeBois.get(resposta));
+				alteraAnimal(listaDeAnimais.get(resposta));
 				resposta = 1;
 			} else {
 				mostraMensagemDeErro();
@@ -108,50 +108,50 @@ public class App {
 		} while (resposta != 1);
 		resposta = 0;
 	}
-	
-	private static void alteraBoi(Boi boi) {
+
+	private static void alteraAnimal(Animal animal) {
 		clearScreen();
-		if(listaDeBois.size() > 0) {
-			System.out.println("1 - Digite o nome do boi");
+		if (listaDeAnimais.size() > 0) {
+			System.out.println("1 - Digite o nome do animal");
 			System.out.print("Resposta: ");
 			nome = ler.next();
-			boi.setNome(nome); 
-			System.out.println("2 - Digite a idade do boi");
+			animal.setNome(nome);
+			System.out.println("2 - Digite a idade do animal");
 			System.out.print("Resposta: ");
 			idade = ler.nextInt();
-			boi.setIdade(idade); 
-			System.out.println("3 - Digite qual foi a última vacina que o boi tomou");
+			animal.setIdade(idade);
+			System.out.println("3 - Digite qual foi a ï¿½ltima vacina que o animal tomou");
 			System.out.print("Resposta: ");
 			nomeUltimaVacina = ler.next();
-			boi.setNomeUltimaVacina(nomeUltimaVacina); 
-			System.out.println("4 - Digite a data da última vacina que o boi tomou");
+			animal.setNomeUltimaVacina(nomeUltimaVacina);
+			System.out.println("4 - Digite a data da ï¿½ltima vacina que o animal tomou");
 			System.out.print("Resposta: ");
 			dataUltimaVacina = ler.next();
-			boi.setDataUltimaVacina(dataUltimaVacina); 
-			System.out.println("5 - Digite o peso do boi");
+			animal.setDataUltimaVacina(dataUltimaVacina);
+			System.out.println("5 - Digite o peso do animal");
 			System.out.print("Resposta: ");
 			peso = ler.nextFloat();
-			boi.setPeso(peso);
-		}else {
+			animal.setPeso(peso);
+		} else {
 			mostraMensagemDeErro();
 		}
 		resposta = 0;
 	}
 
-	private static void excluiBoi() {
+	private static void excluiAnimal() {
 		clearScreen();
-		if (listaDeBois.size() > 0) {
+		if (listaDeAnimais.size() > 0) {
 			criaTabela();
-			System.out.println("Informe o ID do boi a ser removido: ");
+			System.out.println("Informe o ID do animal a ser removido: ");
 			resposta = ler.nextInt();
-			listaDeBois.remove(resposta);
-			for(int i = 0; i < listaDeBois.size(); i++) {
-				listaDeBois.get(i).setId(i);
+			listaDeAnimais.remove(resposta);
+			for (int i = 0; i < listaDeAnimais.size(); i++) {
+				listaDeAnimais.get(i).setId(i);
 			}
-		}else {
+		} else {
 			mostraMensagemDeErro();
 		}
-		
+
 		resposta = 0;
 	}
 
@@ -159,20 +159,30 @@ public class App {
 		for (int i = 0; i < 50; ++i)
 			System.out.println();
 	}
-	
+
 	private static void criaTabela() {
-		System.out.println(" __________________________________________________________________________________________");
-		System.out.println("| " + String.format("%-4.4s", "ID") + "| "+ String.format("%-20.20s", "NOME") + "| " + String.format("%-7.7s", "IDADE") + "| " + String.format("%-20.20s", "ÚLT. VACINA") + "| " + String.format("%-20.20s", "DATA ÚLT. VACINA") + "| " + String.format("%-8.8s", "PESO") + "|");
-		System.out.println("|------------------------------------------------------------------------------------------|");
-		for (int i = 0; i < listaDeBois.size(); i++) {
-			System.out.println("|" + String.format("%4.4s", listaDeBois.get(i).getId()) + " |" + String.format("%-20.20s", listaDeBois.get(i).getNome()) + " |" + String.format("%7.7s", listaDeBois.get(i).getIdade()) + " |" + String.format("%-20.20s", listaDeBois.get(i).getNomeUltimaVacina()) + " |" + String.format("%20.20s", listaDeBois.get(i).getDataUltimaVacina()) + " |" + String.format("%8.8s", listaDeBois.get(i).getPeso()) + " |");
+		System.out
+				.println(" __________________________________________________________________________________________");
+		System.out.println("| " + String.format("%-4.4s", "ID") + "| " + String.format("%-20.20s", "NOME") + "| "
+				+ String.format("%-7.7s", "IDADE") + "| " + String.format("%-20.20s", "ï¿½LT. VACINA") + "| "
+				+ String.format("%-20.20s", "DATA ï¿½LT. VACINA") + "| " + String.format("%-8.8s", "PESO") + "|");
+		System.out.println(
+				"|------------------------------------------------------------------------------------------|");
+		for (Animal element : listaDeAnimais) {
+			System.out.println("|" + String.format("%4.4s", element.getId()) + " |"
+					+ String.format("%-20.20s", element.getNome()) + " |"
+					+ String.format("%7.7s", element.getIdade()) + " |"
+					+ String.format("%-20.20s", element.getNomeUltimaVacina()) + " |"
+					+ String.format("%20.20s", element.getDataUltimaVacina()) + " |"
+					+ String.format("%8.8s", element.getPeso()) + " |");
 		}
-		System.out.println("|__________________________________________________________________________________________|");
-		System.out.println("Quantidade de bois cadastrados: " + listaDeBois.size());
+		System.out.println(
+				"|__________________________________________________________________________________________|");
+		System.out.println("Quantidade de animais cadastrados: " + listaDeAnimais.size());
 	}
-	
+
 	private static void mostraMensagemDeErro() {
-		System.out.println("NENHUM BOI FOI CADASTRADO AINDA, RETORNE AO MENU E CADASTRE AO MENOS UM BOI!");
+		System.out.println("NENHUM ANIMAL FOI CADASTRADO AINDA, RETORNE AO MENU E CADASTRE AO MENOS UM ANIMAL!");
 		System.out.println("Deseja retornar ao menu? (1 - SIM / 2 - NAO)");
 		System.out.print("Resposta: ");
 		resposta = ler.nextInt();
